@@ -1,12 +1,12 @@
 FROM java:openjdk-8-jre-alpine
 MAINTAINER Justin Plock <justin@plock.net>
 
-LABEL name="zookeeper" version="3.5.0"
+LABEL name="zookeeper" version="3.5.1"
 
 RUN apk add --no-cache wget bash \
     && mkdir /opt \
-    && wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-3.5.0-alpha/zookeeper-3.5.0-alpha.tar.z | tar -xzf - -C /opt \
-    && mv /opt/zookeeper-3.5.0-alpha /opt/zookeeper \
+    && wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz | tar -xzf - -C /opt \
+    && mv /opt/zookeeper-3.5.1-alpha /opt/zookeeper \
     && cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg \
     && mkdir -p /tmp/zookeeper
 
