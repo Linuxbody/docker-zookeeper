@@ -1,16 +1,15 @@
-# DOCKER-VERSION 1.0.1
-# VERSION        0.5
-
-FROM debian:jessie
+FROM java:openjdk-8-jre-alpine
 MAINTAINER Justin Plock <justin@plock.net>
 
-RUN apt-get update && apt-get install -y openjdk-7-jre-headless wget
-RUN wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-3.5.0-alpha/zookeeper-3.5.0-alpha.tar.gz | tar -xzf - -C /opt \
-    && mv /opt/zookeeper-3.5.0-alpha /opt/zookeeper \
+ENV VERSION 3.5.0-alpha
+LABEL name="zookeeper" version="3.5.0"
+
+RUN apk add --no-cache wget bash \
+    && mkdir /opt \
+    && wget -q -O - http://apache.mirrors.pair.com/zookeeper/zookeeper-$VERSION/zookeeper-$VERSION.tar.z | tar -xzf - -C /opt \
+    && mv /opt/zookeeper-$VERSION /opt/zookeeper \
     && cp /opt/zookeeper/conf/zoo_sample.cfg /opt/zookeeper/conf/zoo.cfg \
     && mkdir -p /tmp/zookeeper
-
-ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 
 EXPOSE 2181 2888 3888
 
