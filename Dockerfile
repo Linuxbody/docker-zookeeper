@@ -1,7 +1,7 @@
 FROM java:openjdk-8-jre-alpine
 MAINTAINER Justin Plock <justin@plock.net>
 
-LABEL name="zookeeper" version="3.5.1"
+LABEL name="zookeeper" version="3.5.1-alpha"
 
 RUN apk add --no-cache wget bash \
     && mkdir /opt \
